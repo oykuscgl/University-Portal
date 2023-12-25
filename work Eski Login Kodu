@@ -1,0 +1,80 @@
+cout << "************************"<<endl<<"SCHOOL PORTAL SYSTEM"<<endl<<"************************"<<endl;
+    cout << "Please select your login type: "<< endl;
+    cout << "(1) Student.\n";
+    cout << "(2) Lecturer.\n";
+    cout << "(3) Teaching Assistant.\n";
+    cout << "(4) System Administrator.\n";
+    int decision = 0; 
+    while (decision == 0 )
+    {
+        int signtype; 
+        string userName;
+        string password; 
+        switch (signtype)
+        {
+        case 1:
+            cout << "Login type: Student.";
+            decision = 1; 
+            for (bool verify = 0; verify == 0;){
+                cout << "Please Enter your username: "<<endl;
+                cin>>userName;
+                cout << "Please Enter your password: "<<endl;
+                cin>>password;
+                // cehck username and password 
+                    //if true make verify 1 
+                    //else make verify 0 ask them again.
+
+            }
+
+
+        case 2:
+            std::cout << "Login type: Lecturer .";
+            decision = 1; 
+            for (bool verify = 0; verify == 0;){
+                cout << "Please Enter your username: "<<endl;
+                cin>>userName;
+                cout << "Please Enter your password: "<<endl;
+                cin>>password;
+                // cehck username and password 
+                    //if true make verify 1 
+                    //else make verify 0 ask them again.
+
+            }
+
+            break;
+
+        case 3:
+            std::cout << "Login type: Teaching Assistant.";
+            decision = 1; 
+            for (bool verify = 0; verify == 0;){
+                cout << "Please Enter your username: "<<endl;
+                cin>>userName;
+                cout << "Please Enter your password: "<<endl;
+                cin>>password;
+                // cehck username and password 
+                    //if true make verify 1 
+                    //else make verify 0 ask them again.
+
+            }
+
+            break;
+
+        case 4:
+            std::cout << "Login type: System Administrator.";
+            decision = 1; 
+            for (bool verify = 0; verify == 0;){
+                cout << "Please Enter your username: "<<endl;
+                cin>>userName;
+                cout << "Please Enter your password: "<<endl;
+                cin>>password;
+                // cehck username and password 
+                    //if true make verify 1 
+                    //else make verify 0 ask them again.
+
+            }
+            break;
+        
+        default:
+            break;
+        }
+    }
