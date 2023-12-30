@@ -130,24 +130,22 @@ void Admin::removeStudent(){
     // Open the input and output files
     std::ifstream inputFile("studentscopy.csv");
     std::ofstream outputFile("temp.csv");
-    if (inputFile.is_open() && outputFile.is_open() ){
-        int lineInput;
-        cout << "Please enter the line you want to remove: ";
-        cin >> lineInput;
+    int lineInput;
+    cout << "Please enter the line you want to remove: ";
+    cin >> lineInput;
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
+        
         
         string line;
-        int currentLineNumber = 2;
+        int currentLineNumber = 1;
+        
 
         
 
         while (getline(inputFile, line)) {
-            if (currentLineNumber != lineInput && lineInput > 1) {
+            if(currentLineNumber != lineInput) {
                 outputFile << line << std::endl;
-            }
-            else {
-                cerr << "Please start with line 2";
-                break;
-            }
+            }   
             currentLineNumber++;
         }
 
@@ -156,7 +154,7 @@ void Admin::removeStudent(){
         outputFile.close();
 
          // Remove the original file
-        if (remove("studentscopy.csv") != 0) {
+        if (remove("studentscopy.csv") != 0 ) {
             cerr << "Error deleting original file." << endl;
         }
 
@@ -165,16 +163,104 @@ void Admin::removeStudent(){
             cerr << "Error renaming file." << endl;
         }
 
-        if (lineInput > 1){
-            cout << "Line " << lineInput << " deleted successfully." <<endl;
-        }
+    
+        cout << "Line " << lineInput << " deleted successfully." <<endl;
+    
     }
     else
         cout << "unable to open the files.";
 }
 
+void Admin::removeLecturer(){
+    // Open the input and output files
+    std::ifstream inputFile("lecturers.csv");
+    std::ofstream outputFile("temp.csv");
+    int lineInput;
+    cout << "Please enter the line you want to remove: ";
+    cin >> lineInput;
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
+        
+        
+        string line;
+        int currentLineNumber = 1;
+        
 
+        
 
+        while (getline(inputFile, line)) {
+            if(currentLineNumber != lineInput) {
+                outputFile << line << std::endl;
+            }   
+            currentLineNumber++;
+        }
+
+        // Close the input and output files
+        inputFile.close();
+        outputFile.close();
+
+         // Remove the original file
+        if (remove("lecturers.csv") != 0 ) {
+            cerr << "Error deleting original file." << endl;
+        }
+
+        // Rename the temporary file to the original file name
+        if (rename("temp.csv", "lecturers.csv") != 0) {
+            cerr << "Error renaming file." << endl;
+        }
+
+    
+        cout << "Line " << lineInput << " deleted successfully." <<endl;
+    
+    }
+    else
+        cout << "unable to open the files.";
+
+}
+
+void Admin:: removeCourse(){
+    // Open the input and output files
+    std::ifstream inputFile("courses.csv");
+    std::ofstream outputFile("temp.csv");
+    int lineInput;
+    cout << "Please enter the line you want to remove: ";
+    cin >> lineInput;
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
+        
+        
+        string line;
+        int currentLineNumber = 1;
+        
+
+        
+
+        while (getline(inputFile, line)) {
+            if(currentLineNumber != lineInput) {
+                outputFile << line << std::endl;
+            }   
+            currentLineNumber++;
+        }
+
+        // Close the input and output files
+        inputFile.close();
+        outputFile.close();
+
+         // Remove the original file
+        if (remove("courses.csv") != 0 ) {
+            cerr << "Error deleting original file." << endl;
+        }
+
+        // Rename the temporary file to the original file name
+        if (rename("temp.csv", "courses.csv") != 0) {
+            cerr << "Error renaming file." << endl;
+        }
+
+    
+        cout << "Line " << lineInput << " deleted successfully." <<endl;
+    
+    }
+    else
+        cout << "unable to open the files.";
+}
 
 
 void Admin::readFile(string fileName){
@@ -310,3 +396,4 @@ void Admin::adminMenu(){
     }
 
 }
+
