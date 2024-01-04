@@ -159,7 +159,7 @@ class Student
         gender = gen;
     }
 
-//Add every attribute of the object of the Student class to students.csv database
+    //Add every attribute of the object of the Student class to students.csv database
     void saveToFile(const string &fileName)
     {
         ofstream file(fileName, ios::out |ios::app);
@@ -195,8 +195,42 @@ class Student
         }
     }
 
+    void updateInfoToCSV(const string &fileName)
+    {
+        ofstream file(fileName, ios::out | ios::app);
 
-//See all courses in the database
+        if (file.is_open())
+        {
+            file << name << ", ";
+            file << myFaculty << ", ";
+            file << email << ", ";
+            file << phone << ", ";
+            for (int i = 0; i < numOfCourses; i++)
+            {
+                if (myCourses[i] == myCourses[numOfCourses - 1])
+                    file << myCourses[i];
+                else
+                    file << myCourses[i] << "/";
+            }
+            file << ", ";
+            file << address << ", ";
+            file << gpa << ", ";
+            file << birthYear << ", ";
+            file << numOfCourses << ", ";
+            file << debtInformation << ", ";
+            file << studentID << ", ";
+            file << gender << endl;
+
+            file.close();
+            cout << "Student Information was updated in the database" << endl;
+        }
+        else
+            cout << "Unable to update the information" << endl;  
+    }
+
+
+
+    //See all courses in the database
     void seeCourses()
     {
         string line, fileName = "courses.csv";
@@ -208,6 +242,7 @@ class Student
             {
                 cout << line << endl;
             }
+            file.close();
         }
         else    
         {
@@ -215,28 +250,51 @@ class Student
         }
     }
 
-    void seeEnrolledCourses(Student student)
+    void seeEnrolledCourses()
     {
         cout << "Enrolled Courses: " << endl;
         for(int i=0; i<numOfCourses;i++)
-            cout << student.myCourses[i] << ", ";
+            cout << this->myCourses[i] << ", ";
     }
 
 
-//Add or remove a course for that specific student
-//The database of studentCourse will be updated. New course for that student will be added. 
-    void addRemoveCourse(Student student)
+    //Add or remove a course for that specific student
+    //The database of studentCourse will be updated. New course for that student will be added. 
+    void addRemoveCourse()
     {
         int n;
         cout << "Choose operation:\n1)Add new course\n2)Remove remaining course";
         cin >> n;
         if(n==1)
         {
+            string newCourse;
+            cout << "Enter course ID: ";
+            cin >> newCourse;
+            numOfCourses++;
+            myCourses[numOfCourses-1] = newCourse;
+            updateInfoToCSV("updated_students.csv");
 
         }
         else if(n==2)
         {
-
+            string removeCourse;
+            for(int i=0; i<numOfCourses;i++)
+            {
+                if(myCourses[i] != myCourses[numOfCourses-1])
+                    cout << myCourses[i] << ", ";
+                cout << myCourses[i] << endl;
+            }
+            for(int i=0; i<numOfCourses; i++)
+            {
+                if(myCourses[i] == removeCourse)
+                {
+                    myCourses[i] = "";
+                    updateInfoToCSV("updated_students.csv");
+                }
+                else
+                    cerr << "Not a registered course" << endl;
+            }
+            
         }
         else
             cout << "Invalid value." << endl;
@@ -244,47 +302,155 @@ class Student
     }
 
 
-//See debt information for that specific student
-    void seeDebtInformation(Student student)
+    //See debt information for that specific student
+    void seeDebtInformation()
     {
         cout << "Debt Info" << endl;
-        cout << student.debtInformation << " $" << endl;
+        cout << this->debtInformation << " $" << endl;
     }
 
-//Enter each letter grade and calculate the GPA for entered lecture
-    int gpaCalculator(Student student)
+    //Enter each letter grade and calculate the GPA for entered lecture
+    void gpaCalculator()
     {
-        unsigned short ID, mid, fin, courseNum;
+        double credit, fin;
+        unsigned short courseNum;
+        string ID;
         int grade = 0;
+        unsigned short totalCredit = 0;
 
-        //function will reach to student's enrolled courses. Will take an input for each course.
- 
+        cout << "How many courses: ";
+        cin >> courseNum;
 
         //calculate the GPA
-        for(int i=0; i<courseNum; i++)
+        for(unsigned short i=0; i<courseNum; i++)
         {
             cout << "Enter the Course ID: ";
             cin >> ID; 
+            cout << "Enter the Course Credit: ";
+            cin >> credit;
+            totalCredit += credit;
 
-            cout << "Enter the Midterm Grade: ";
-            cin >> mid;
-            mid = mid*40/100;
 
-            cout << "Enter the Final Grade: ";
+            do
+            {
+            cout << "Enter the Total Grade: ";
             cin >> fin;
-            fin = fin*60/100;
+            }while(fin > 4);
 
-            grade = mid + fin;
+            grade += fin* credit;
         }
-        return grade/courseNum;
+
+        cout << (double)grade/totalCredit;
 
     }
 
-    void printPersonalInfo(Student student);
+    void printPersonalInfo()
+    {
+        cout << "Your personal Information:" << endl;
+        cout << "Name: " << this->name << endl;
+        cout << "Faculty: " << this->myFaculty << endl;
+        cout << "Email: " << this->email << endl;
+        cout << "Phone: " << this->phone << endl;
 
-    void changeInfo(Student student );
+        cout << "Enrolled Courses: ";
+        for (int i = 0; i < this->numOfCourses; ++i)
+        {
+            cout << this->myCourses[i];
+            if (i < this->numOfCourses - 1)
+                cout << ", ";
+        }
+        cout << endl;
+
+        cout << "Address: " << this->address << endl;
+        cout << "GPA: " << this->gpa << endl;
+        cout << "Birth Year: " << this->birthYear << endl;
+        cout << "Student ID: " << this->studentID << endl;
+        cout << "Gender: " << this->gender << endl;
+    }
 
 
- 
+    void changeInfo()
+    {
+        int n;
+        cout << "Which information you would like to change:\n1) Address\n2)Phone number\n3)Birth year" << endl;
+        cin >> n;
+        if(n==1)
+        {
+            string newAdd;
+            cout << "Enter the new address: ";
+            cin >> newAdd;
+            this->setAddress(newAdd);
+            updateInfoToCSV("updated_students.csv");
+        }
+
+        else if(n==2)
+        {
+            long newPhone;
+            cout << "Enter the new phone number: ";
+            cin >> newPhone;
+            this->setPhone(newPhone);            
+            updateInfoToCSV("updated_students.csv");
+        }
+
+        else if(n==3)
+        {
+            int newYear;
+            cout << "Enter the new year: ";
+            cin >> newYear;
+            this->setBirthYear(newYear);
+            updateInfoToCSV("updated_students.csv");
+        }
+        else
+            cerr << "Unauthorized." << endl;        
         
+    }
+
+    void StudentMenu()
+    {
+        int chosen;
+        cout << "-----------------Student Menu-----------------" << endl;
+        cout << "1) See all courses" << endl;
+        cout << "2) See enrolled courses" << endl;
+        cout << "3) Add or Remove courses" << endl;
+        cout << "4) See debt information" << endl;
+        cout << "5) GPA Calculator" << endl;
+        cout << "6) Print personal information " << endl;
+        cout << "7) Change information " << endl;
+        cout << "Choose the operation: ";
+        cin >> chosen;
+        switch (chosen)
+        {
+            case 1:
+                seeCourses();
+                break;
+
+            case 2:
+                seeEnrolledCourses();
+                break;
+
+            case 3:
+                addRemoveCourse();
+                break;  
+
+            case 4:
+                seeDebtInformation();
+                break;
+                
+            case 5:
+                gpaCalculator();
+                break;
+
+            case 6:
+                printPersonalInfo();
+                break;
+
+            case 7:
+                changeInfo();
+                break;                            
+
+            default:
+                break;
+        }
+    }
+      
 };

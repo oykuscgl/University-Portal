@@ -30,12 +30,6 @@ class User
         password = passw;
     }
     
-    //which user have entered to the system: Student, Lecturer, Teaching assistant or admin
-    void checkLogin(string userName)
-    {
-
-    }
-
 
 };
 

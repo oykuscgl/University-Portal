@@ -10,10 +10,36 @@
 #include "Admin.h"
 using namespace std;
 
+
+
+void logIn()
+{
+    /* PSEUDOCODE
+    if password ture
+    {
+        check the username
+        if username true
+        {
+            check which user
+            open the user page
+        }
+        else{
+            invalid username. try again
+        }
+    }
+    else
+    {
+        invalid password.try again
+    }
+    */
+}
+
+
+
 int main()
 {
     
-        Student student;
+    Student student;
     // Set values using setters
     student.setName("Öykü");
     student.setMyFaculty("Engineering");
@@ -66,7 +92,7 @@ int main()
     student2.setMyCourse(3,"");
     student2.setMyCourse(4, "");
     student2.setMyCourse(5, "");
-    student2.setAddress("Kadıköy");
+    student2.setAddress("Kadiköy");
     student2.setGPA(3.1);
     student2.setBirthYear(2001);
     student2.setNumOfCourses(6);
@@ -92,11 +118,10 @@ int main()
 
 
 
+// They will also be students.
     TeachingAssistant ta;
     TeachingAssistant ta1;
-    TeachingAssistant ta2;
-    TeachingAssistant ta3;
-    TeachingAssistant ta4;
+
     const string teachAstFile = "teacAst.csv";
 
 
@@ -115,78 +140,6 @@ int main()
     cin >> password;
     system("clear");
 
-//check if the entered user name belongs to student class
-    if(user == "20201701057" || user == "20201701053")
-    {
-        int chosen;
-        cout << "------------------------------Student Login------------------------------" << endl;
-        cout << "Choose the wanted operation:" << endl;
-        cout << "1) See All Courses\n";
-        cout << "2) See Enrolled Courses\n";
-        cout << "3) Add/Remove Course\n";
-        cout << "4) See Debt Info\n";
-        cout << "5) GPA Calculator\n";
-        cout << "6) Personal Info\n"; 
-        cout << "7) Update Your Information\n";    
-        cin >> chosen; 
-        system("clear");
-
-        switch(chosen)
-        {
-            case 1:
-                student.seeCourses();
-                break;
-            case 2:
-                student.seeEnrolledCourses(student);
-                break;
-            case 3:
-                student.addRemoveCourse(student);
-                break;
-            case 4:
-                student.seeDebtInformation(student);
-            break;
-            case 5:
-                student.gpaCalculator(student);
-                break;
-            case 6:
-                student.printPersonalInfo(student);
-                break;
-            case 7:
-                student.changeInfo(student);
-                break;
-                
-        }
-    }
-
-//check if the entered user name belongs to lecturer class
-    if(user == "fabstr" || user == "ilkar" || user=="dgncrs" || user == "nmajfr")
-    {
-        cout << "------------------------------Lecturer Login------------------------------" << endl;
-        cout << "Choose the wanted operation:" << endl;
-        cout << "1) See Your Courses\n";
-        cout << "2) Add New Course\n";
-        cout << "3) Remove Course\n";
-        cout << "4) Edit Course Info\n";
-        cout << "5) See/Edit Grades\n";
-        cout << "6) Update Your Information\n";
-
-    }
-
-//check if the username belong to admin class
-    if(user == "admin" || user == "admin1")
-    {
-        cout << "------------------------------Admin Login------------------------------" << endl;
-        cout << "Choose the wanted operation:" << endl;
-        cout << "1) \n"; 
-    }
-
-//check if the username belong to teaching assistant class
-    if(user == "a" || user == "b" || user == "c")
-    {
-        cout << "------------------------------Teaching Assistant Login------------------------------" << endl;
-        cout << "Choose the wanted operation:" << endl;
-        cout << "1) \n";        
-    } 
 
 }
 
