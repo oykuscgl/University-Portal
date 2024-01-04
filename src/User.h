@@ -1,3 +1,5 @@
+#ifndef User_H
+#define User_H
 #include <iostream>
 #include <string>
 
@@ -32,4 +34,4 @@ class User
     
 
 };
-
+#endif

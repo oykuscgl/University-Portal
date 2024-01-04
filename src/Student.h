@@ -1,12 +1,13 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "User.h"
 using namespace std;
 #define MAXCOURSES 10
 
 //student ID, GPA calculation function(access to studentScoreboard, only the specific student), See enrolled courses function(acces to studentCourses file), see content of the courses function(choose a course name and acces to course info file), access to attendance list function(only for the specific student), changing the phone number(access to student file only for the specific student)
 
-class Student
+class Student: public User
 {
 
     protected: 

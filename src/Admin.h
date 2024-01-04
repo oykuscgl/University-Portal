@@ -1,14 +1,14 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "User.h"
 using namespace std;
 
-class Admin
+class Admin: public User
 {
 private:
     
 public:
-
 void adminMenu();
 
 // Functions to write databases

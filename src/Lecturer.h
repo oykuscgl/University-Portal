@@ -1,21 +1,24 @@
+#ifndef Lecturer_H
+#define Lecturer_H
+#include "User.h"
 #include <string>
 #include <iostream>
 #include <fstream>
 using namespace std;
 #define MAXCOURSES 10
 
-class Lecturer
+class Lecturer: public User
 {
     string name;
     string myCourses[MAXCOURSES];
-    string phone;
+    long phone;
     string email;
-    string birth;
+    int birthYear;
     char gender;
     int numOfCourses;
 
     
-
+    public:
     string getName()
     {
         return name;
@@ -24,6 +27,50 @@ class Lecturer
     {
         name = nm;
     }
+
+        string getEmail()
+    {
+        return email;
+    }
+    void setEmail(const string mail)
+    {
+        email = mail;
+    }
+
+    long getPhone()
+    {
+        return phone;
+    }
+    void setPhone(long phoneNum)
+    {
+        phone = phoneNum;
+    }
+
+    int getBirthYear()
+    {
+        return birthYear;
+    }
+    void setBirthYear(int year)
+    {
+        birthYear = year;
+    }
+    // Getter and setter for gender
+    char getGender() const {
+        return gender;
+    }
+
+    void setGender(char gen) {
+        gender = gen;
+    }
+    // Getter and setter for numOfCourses
+    int getNumOfCourses() const {
+        return numOfCourses;
+    }
+
+    void setNumOfCourses(int numCourses) {
+        numOfCourses = numCourses;
+    }
+
 
     const string& getMyCourses(int index)  
     {
@@ -64,7 +111,7 @@ class Lecturer
                 
             }
             file << ", ";
-            file << birth << ", ";
+            file << birthYear << ", ";
             file << gender << endl;    
             file.close(); 
             cout << "Student Information was added to the database" << endl;
@@ -94,7 +141,7 @@ class Lecturer
             }
             file << ", ";
             file << numOfCourses << ", ";
-            file << birth << ", ";
+            file << birthYear << ", ";
             file << gender << endl;
 
             file.close();
@@ -192,7 +239,7 @@ class Lecturer
         else if (n == 2)
         {
             cout << "Enter the new birth year: ";
-            cin >> birth;
+            cin >> birthYear;
         }
         else
         {
@@ -243,3 +290,5 @@ class Lecturer
     }
 
 };
+
+#endif

@@ -110,6 +110,8 @@ int main()
 
 
     Lecturer lecturer;
+    lecturer.setName("dan");
+    
     Lecturer lecturer1;
     Lecturer lecturer2;
     Lecturer lecturer3;
