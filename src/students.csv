@@ -1,1 +1,6 @@
-
+Student ID,Username,Fullname,Password,DoB,Gender,Email,Phone,Department
+20201701056,melindafatma,Melinda Fatma, fatma,26/09/2001, Female, fatma_melinda@stu.khas.edu.tr, 0534 323 40 68, Computer Engineering
+20192301047,zarifali ,Zarif Ali, ali,13/06/2002, Male, ali.zarif@stu.khas.edu.tr, 0534 823 45 69, Industrial Engineering
+20191601048,kutlukerim ,Kutlu Kerim, kerim,10/02/2002, Male, kerim.kutlu@stu.kerim.edu.tr, 0543 143 45 70, Industrial Engineering
+20201701048, deryaece,Derya Ece, ece,11/04/2002, Female, ece.derya@stu.khas.edu.tr, 0532 346 20 91, Computer Engineering
+20201701064, ömerkayraakbaş ,Ömer Kayra Akbaş, akbaş ,03/10/2002, Male, kayra@stu.khas.edu.tr, 0532 220 50 66, Computer Engineering
