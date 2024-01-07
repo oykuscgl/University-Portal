@@ -4,13 +4,16 @@
 #include <iostream>
 using namespace std;
 
-class Admin
+class Admin: protected User
 {
 private:
     
 public:
 
-    Admin(){}
+    Admin(){
+        userName = "";
+        password = "";
+    }
 
     void adminMenu();
 
@@ -399,4 +402,3 @@ void Admin::adminMenu(){
     }
 
 }
-
