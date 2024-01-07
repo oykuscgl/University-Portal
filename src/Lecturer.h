@@ -9,6 +9,8 @@ using namespace std;
 
 class Lecturer: public User
 {
+    userName = "";
+    password = "";
     string name;
     string myCourses[MAXCOURSES];
     long phone;
