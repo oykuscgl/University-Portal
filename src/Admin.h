@@ -1,36 +1,39 @@
 #include <string>
+#include "User.h"
 #include <fstream>
 #include <iostream>
-#include "User.h"
 using namespace std;
 
-class Admin: public User
+class Admin
 {
 private:
     
 public:
-void adminMenu();
 
-// Functions to write databases
-void addNewStudent();
-void addNewLectuer();
-void addNewCourses();
+    Admin(){}
 
-void removeStudent();
-void removeLecturer();
-void removeCourse();
+    void adminMenu();
+
+    // Functions to write databases
+    void addNewStudent();
+    void addNewLectuer();
+    void addNewCourses();
+
+    void removeStudent();
+    void removeLecturer();
+    void removeCourse();
 
 
-// Functions to read databases
-void readFile(string);
-void getAllCourses();
-void getAllLecturerCourse();
-void getAllLecturers();
-void getAllStudents();
-void getAllStudentScoreBoards();
-void getAllStudentsCourse();
+    // Functions to read databases
+    void readFile(string);
+    void getAllCourses();
+    void getAllLecturerCourse();
+    void getAllLecturers();
+    void getAllStudents();
+    void getAllStudentScoreBoards();
+    void getAllStudentsCourse();
 
-void getAllDatabase();
+    void getAllDatabase();
 
 };
 
@@ -140,8 +143,6 @@ void Admin::removeStudent(){
         int currentLineNumber = 1;
         
 
-        
-
         while (getline(inputFile, line)) {
             if(currentLineNumber != lineInput) {
                 outputFile << line << std::endl;
@@ -167,6 +168,11 @@ void Admin::removeStudent(){
         cout << "Line " << lineInput << " deleted successfully." <<endl;
     
     }
+    else if(lineInput == 1){
+        cout << "Enter Line number bigger than 1."<<endl;
+        cout << "nothing removed"<<endl;
+    }
+
     else
         cout << "unable to open the files.";
 }
@@ -201,12 +207,12 @@ void Admin::removeLecturer(){
          // Remove the original file
         if (remove("lecturers.csv") != 0 ) {
             cerr << "Error deleting original file." << endl;
-        }
+        }// değiştirilecek 
 
         // Rename the temporary file to the original file name
         if (rename("temp.csv", "lecturers.csv") != 0) {
             cerr << "Error renaming file." << endl;
-        }
+        }// değiştirilecek 
 
     
         cout << "Line " << lineInput << " deleted successfully." <<endl;
@@ -387,9 +393,6 @@ void Admin::adminMenu(){
         break;
         case 15:
         void getAllLecturerCourse();
-        break;
-        case 16:
-        void login();
         break;
         default :
         cout << "Wrong number! Please select again." << endl;
