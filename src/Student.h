@@ -27,7 +27,22 @@ class Student: public User
 
     public:
     // Constructor
-    Student() : gpa(0.0), numOfCourses(0), debtInformation(0), studentID(0), gender(' ') {}
+    Student(){
+        userName = "";
+        password = "";
+        name = "";
+        myFaculty = "";
+        email = "";
+        phone = 0;
+        myCourses[MAXCOURSES]= [];
+        address = "";
+        gpa = 0.0;
+        birthYear = 0;
+        numOfCourses=0;
+        debtInformation=0;
+        studentID=0;
+        gender='';
+    } 
 
 
     public:
@@ -348,6 +363,7 @@ class Student: public User
     void printPersonalInfo()
     {
         cout << "Your personal Information:" << endl;
+        cout << "User name: " << this->userName << endl;
         cout << "Name: " << this->name << endl;
         cout << "Faculty: " << this->myFaculty << endl;
         cout << "Email: " << this->email << endl;
