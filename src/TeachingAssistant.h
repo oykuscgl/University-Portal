@@ -1,44 +1,42 @@
+
+#ifndef TeachingAssistant_H
+#define TeachingAssistant_H
 #include <string>
 #include <iostream>
 #include <fstream>
 #include "User.h"
-#include "Professor.h"
 #include "Student.h"
 using namespace std;
 
-class TeachingAssistant: protected Student, protected Professor
+class TeachingAssistant: public Student
 {
 private:
     
     int courseID; //the course id 
 public:
 
-    TeachingAssistant(){
+    TeachingAssistant()
+    {
         userName = "";
         password = "";
         name = "";
         myFaculty = "";
         email = "";
         phone = 0;
-        myCourses[MAXCOURSES]= [];
+        for (int i = 0; i < MAXCOURSES; i++) {
+            myCourses[i] = "";
+        }
         address = "";
         gpa = 0.0;
         birthYear = 0;
         numOfCourses=0;
         debtInformation=0;
         studentID=0;
-        gender='';
+        gender = '\0';
         
     }
 
-
-    string seeCourseInfo();
-    string attendanceList();  // reach to attendance list file for the specific course
-    string seeGrades();  // see the grades of each student for the specific course.
-    dropCourse(); // assistant can drop the course
-    string updateInfo(); // assistant can update address and telephone number info
-
-    TeachingAssistant(int courseID):User,Student,Lecturer;
+    TeachingAssistant(int courseID)
     {
         this->courseID = courseID;
     }
@@ -167,8 +165,9 @@ public:
     }
 
 
-    void saveToFile(){
-        Student::saveToFile();
+    void saveToFile(const string &fileName)
+    {
+        Student::saveToFile(fileName);
     }
 
     void updateInfoToCSV(const string &fileName)
@@ -194,8 +193,8 @@ public:
             file << birthYear << ", ";
             file << numOfCourses << ", ";
             file << debtInformation << ", ";
-            file << studentID << ", ";
-            file << gender << endl;
+            file << getStudentID() << ", ";
+            file << getGender() << endl;
 
             file.close();
             cout << "Student Information was updated in the database" << endl;
@@ -204,34 +203,60 @@ public:
             cout << "Unable to update the information" << endl;  
     }
 
-    void seeCourses(){
+    void seeCourses()
+    {
         Student::seeCourses();
     }
 
 
-    void seeEnrolledCourses(){
+    void seeEnrolledCourses()
+    {
         Student::seeEnrolledCourses();
     }
-    void addRemoveCourse(){
+    void addRemoveCourse()
+    {
         Student::addRemoveCourse();
     }
 
-    void seeDebtInformation(){
+    void seeDebtInformation()
+    {
         Student::seeDebtInformation();
     }
 
-    gpaCalculator(){
-        Student::gpaCalculator();
+    void gpaCalculator() {Student::gpaCalculator();}
+
+
+    void printPersonalInfo()
+    {
+        cout << "Your personal Information:" << endl;
+        cout << "User name: " << this->userName << endl;
+        cout << "Name: " << this->name << endl;
+        cout << "Faculty: " << this->myFaculty << endl;
+        cout << "Email: " << this->email << endl;
+        cout << "Phone: " << this->phone << endl;
+
+        cout << "Enrolled Courses: ";
+        for (int i = 0; i < this->numOfCourses; ++i)
+        {
+            cout << this->myCourses[i];
+            if (i < this->numOfCourses - 1)
+                cout << ", ";
+        }
+        cout << endl;
+
+        cout << "Address: " << this->address << endl;
+        cout << "GPA: " << this->gpa << endl;
+        cout << "Birth Year: " << this->birthYear << endl;
+        cout << "Student ID: " << this->studentID << endl;
+        cout << "Gender: " << this->gender << endl;
+    }
+    
+    void changeInfo()
+    {
+        Student::changeInfo();
     }
 
-    printPersonalInfo(){
-        Student::printPersonalInfo();
-    }
-    changeInfo(){
-        student::changeInfo();
-    }
-
-    void Ta Menu()
+    void TaMenu()
     {
         int chosen;
         cout << "-----------------TA Menu-----------------" << endl;
@@ -247,38 +272,34 @@ public:
         switch (chosen)
         {
             case 1:
-                seeCourses();
+                TeachingAssistant::seeCourses();
                 break;
 
             case 2:
-                seeEnrolledCourses();
+                TeachingAssistant::seeEnrolledCourses();
                 break;
 
             case 3:
-                addRemoveCourse();
+                TeachingAssistant::addRemoveCourse();
                 break;  
 
             case 4:
-                seeDebtInformation();
+                TeachingAssistant::seeDebtInformation();
                 break;
                 
             case 5:
-                gpaCalculator();
+                TeachingAssistant::gpaCalculator();
                 break;
 
             case 6:
-                printPersonalInfo();
+                TeachingAssistant::printPersonalInfo();
                 break;
 
             case 7:
-                changeInfo();
+                TeachingAssistant::changeInfo();
                 break;                            
-
-            default:
-                break;
         }
     }
       
 };
-
-
+#endif

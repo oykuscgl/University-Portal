@@ -1,3 +1,4 @@
+
 #ifndef Lecturer_H
 #define Lecturer_H
 #include "User.h"
@@ -9,8 +10,6 @@ using namespace std;
 
 class Lecturer: public User
 {
-    userName = "";
-    password = "";
     string name;
     string myCourses[MAXCOURSES];
     long phone;
@@ -101,6 +100,8 @@ class Lecturer: public User
         ofstream file(fileName, ios::out |ios::app);
         if(file.is_open())
         {
+            file << userName << ", ";
+            file << password << ", ";
             file << name << ", ";
             file << email << ", ";
             file << phone << ", ";

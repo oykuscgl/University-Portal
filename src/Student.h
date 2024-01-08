@@ -1,3 +1,6 @@
+
+#ifndef Student_H
+#define Student_H
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -27,21 +30,24 @@ class Student: public User
 
     public:
     // Constructor
-    Student(){
+    Student()
+    {
         userName = "";
         password = "";
         name = "";
         myFaculty = "";
         email = "";
         phone = 0;
-        myCourses[MAXCOURSES]= [];
+        for (int i = 0; i < MAXCOURSES; i++) {
+            myCourses[i] = "";
+        }
         address = "";
         gpa = 0.0;
         birthYear = 0;
-        numOfCourses=0;
-        debtInformation=0;
-        studentID=0;
-        gender='';
+        numOfCourses = 0;
+        debtInformation = 0;
+        studentID = 0;
+        gender = '\0';
     } 
 
 
@@ -181,6 +187,8 @@ class Student: public User
         ofstream file(fileName, ios::out |ios::app);
         if(file.is_open())
         {
+            file << userName << ", ";
+            file << password << ", ";
             file << name << ", ";
             file << myFaculty << ", ";
             file << email << ", ";
@@ -247,7 +255,7 @@ class Student: public User
 
 
     //See all courses in the database
-    void seeCourses()
+    static void seeCourses()
     {
         string line, fileName = "courses.csv";
         fstream file(fileName);
@@ -326,7 +334,7 @@ class Student: public User
     }
 
     //Enter each letter grade and calculate the GPA for entered lecture
-    void gpaCalculator()
+    static void gpaCalculator()
     {
         double credit, fin;
         unsigned short courseNum;
@@ -471,3 +479,4 @@ class Student: public User
     }
       
 };
+#endif

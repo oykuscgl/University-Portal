@@ -1,19 +1,17 @@
+
+#ifndef Admin_H
+#define Admin_H
 #include <string>
 #include "User.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
 
-class Admin: protected User
-{
-private:
-    
+class Admin
+{   
 public:
 
-    Admin(){
-        userName = "";
-        password = "";
-    }
+    Admin(){}
 
     void adminMenu();
 
@@ -131,150 +129,175 @@ void Admin::addNewCourses(){
 }
 
 
-void Admin::removeStudent(){
+void Admin::removeStudent() 
+{
+    ifstream inputFile("students.csv");
+    ofstream outputFile("temp.csv");
 
-    // Open the input and output files
-    std::ifstream inputFile("studentscopy.csv");
-    std::ofstream outputFile("temp.csv");
     int lineInput;
+
     cout << "Please enter the line you want to remove: ";
     cin >> lineInput;
-    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
-        
-        
+
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1) 
+    {
         string line;
         int currentLineNumber = 1;
-        
 
-        while (getline(inputFile, line)) {
-            if(currentLineNumber != lineInput) {
-                outputFile << line << std::endl;
-            }   
+        // Read from the input file and write to the output file without the line to be removed
+        while (getline(inputFile, line)) 
+        {
+            if (currentLineNumber != lineInput) 
+            {
+                outputFile << line << endl;
+            }
             currentLineNumber++;
         }
 
-        // Close the input and output files
         inputFile.close();
         outputFile.close();
 
-         // Remove the original file
-        if (remove("studentscopy.csv") != 0 ) {
-            cerr << "Error deleting original file." << endl;
-        }
+        // Clear the content of the original file
+        ofstream clearOriginalFile("students.csv");
+        clearOriginalFile.close();
 
-        // Rename the temporary file to the original file name
-        if (rename("temp.csv", "studentscopy.csv") != 0) {
-            cerr << "Error renaming file." << endl;
-        }
+        // Open the original file in append mode and write the content from the temporary file
+        ofstream appendOriginalFile("students.csv", ios::app);
+        ifstream tempFile("temp.csv");
 
+        if (tempFile.is_open() && appendOriginalFile.is_open()) 
+        {
+            while (getline(tempFile, line)) 
+            {
+                appendOriginalFile << line << endl;
+            }
+            tempFile.close();
+            appendOriginalFile.close();
+
+            cout << "Line " << lineInput << " deleted successfully." << endl;
+        } else 
+            cout << "Unable to open the files." << endl;
+        
+    } else 
+        std::cout << "Unable to open the files." << endl;
     
-        cout << "Line " << lineInput << " deleted successfully." <<endl;
-    
-    }
-    else if(lineInput == 1){
-        cout << "Enter Line number bigger than 1."<<endl;
-        cout << "nothing removed"<<endl;
-    }
-
-    else
-        cout << "unable to open the files.";
 }
 
-void Admin::removeLecturer(){
-    // Open the input and output files
-    std::ifstream inputFile("lecturers.csv");
-    std::ofstream outputFile("temp.csv");
+
+void Admin::removeLecturer()
+{
+    ifstream inputFile("lectruers.csv");
+    ofstream outputFile("temp.csv");
+
     int lineInput;
+
     cout << "Please enter the line you want to remove: ";
     cin >> lineInput;
-    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
-        
-        
+
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1) 
+    {
         string line;
         int currentLineNumber = 1;
-        
 
-        
-
-        while (getline(inputFile, line)) {
-            if(currentLineNumber != lineInput) {
-                outputFile << line << std::endl;
-            }   
+        // Read from the input file and write to the output file without the line to be removed
+        while (getline(inputFile, line)) 
+        {
+            if (currentLineNumber != lineInput) 
+            {
+                outputFile << line << endl;
+            }
             currentLineNumber++;
         }
 
-        // Close the input and output files
         inputFile.close();
         outputFile.close();
 
-         // Remove the original file
-        if (remove("lecturers.csv") != 0 ) {
-            cerr << "Error deleting original file." << endl;
-        }// değiştirilecek 
+        // Clear the content of the original file
+        ofstream clearOriginalFile("lecturers.csv");
+        clearOriginalFile.close();
 
-        // Rename the temporary file to the original file name
-        if (rename("temp.csv", "lecturers.csv") != 0) {
-            cerr << "Error renaming file." << endl;
-        }// değiştirilecek 
+        // Open the original file in append mode and write the content from the temporary file
+        ofstream appendOriginalFile("lecturers.csv", ios::app);
+        ifstream tempFile("temp.csv");
 
+        if (tempFile.is_open() && appendOriginalFile.is_open()) 
+        {
+            while (getline(tempFile, line)) 
+            {
+                appendOriginalFile << line << endl;
+            }
+            tempFile.close();
+            appendOriginalFile.close();
+
+            cout << "Line " << lineInput << " deleted successfully." << endl;
+        } else 
+            cout << "Unable to open the files." << endl;
+        
+    } else 
+        std::cout << "Unable to open the files." << endl;
     
-        cout << "Line " << lineInput << " deleted successfully." <<endl;
-    
-    }
-    else
-        cout << "unable to open the files.";
 
 }
 
-void Admin:: removeCourse(){
-    // Open the input and output files
-    std::ifstream inputFile("courses.csv");
-    std::ofstream outputFile("temp.csv");
+void Admin:: removeCourse()
+{
+    ifstream inputFile("students.csv");
+    ofstream outputFile("temp.csv");
+
     int lineInput;
+
     cout << "Please enter the line you want to remove: ";
     cin >> lineInput;
-    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1){
-        
-        
+
+    if (inputFile.is_open() && outputFile.is_open() && lineInput != 1) 
+    {
         string line;
         int currentLineNumber = 1;
-        
 
-        
-
-        while (getline(inputFile, line)) {
-            if(currentLineNumber != lineInput) {
-                outputFile << line << std::endl;
-            }   
+        // Read from the input file and write to the output file without the line to be removed
+        while (getline(inputFile, line)) 
+        {
+            if (currentLineNumber != lineInput) 
+            {
+                outputFile << line << endl;
+            }
             currentLineNumber++;
         }
 
-        // Close the input and output files
         inputFile.close();
         outputFile.close();
 
-         // Remove the original file
-        if (remove("courses.csv") != 0 ) {
-            cerr << "Error deleting original file." << endl;
-        }
+        // Clear the content of the original file
+        ofstream clearOriginalFile("students.csv");
+        clearOriginalFile.close();
 
-        // Rename the temporary file to the original file name
-        if (rename("temp.csv", "courses.csv") != 0) {
-            cerr << "Error renaming file." << endl;
-        }
+        // Open the original file in append mode and write the content from the temporary file
+        ofstream appendOriginalFile("students.csv", ios::app);
+        ifstream tempFile("temp.csv");
 
+        if (tempFile.is_open() && appendOriginalFile.is_open()) 
+        {
+            while (getline(tempFile, line)) 
+            {
+                appendOriginalFile << line << endl;
+            }
+            tempFile.close();
+            appendOriginalFile.close();
+
+            cout << "Line " << lineInput << " deleted successfully." << endl;
+        } else 
+            cout << "Unable to open the files." << endl;
+        
+    } else 
+        std::cout << "Unable to open the files." << endl;
     
-        cout << "Line " << lineInput << " deleted successfully." <<endl;
-    
-    }
-    else
-        cout << "unable to open the files.";
 }
 
 
-void Admin::readFile(string fileName){
+void Admin::readFile(string fileName)
+{
     string line;
-    string name = "Database/"+fileName+".csv";
+    string name = fileName+ ".csv";
     ifstream txtFile (name);
     if (txtFile.is_open())
     {
@@ -306,9 +329,6 @@ void Admin::getAllStudentScoreBoards(){
     readFile("studentScoreboard");
 }
 
-void Admin::getAllStudentsCourse(){
-    readFile("studentsCourse");
-}
 
 void Admin::getAllDatabase(){
     getAllCourses();
@@ -316,7 +336,6 @@ void Admin::getAllDatabase(){
     getAllStudents();
     getAllLecturerCourse();
     getAllStudentScoreBoards();
-    getAllStudentsCourse();  
 }
 
 
@@ -326,23 +345,17 @@ void Admin::adminMenu(){
     cout <<  "1-Add new student."<<endl;
     cout <<  "2-Add new lecturer."<<endl;
     cout <<  "3-Add new course."<<endl;
-
     cout <<  "4-Remove student."<<endl;
     cout <<  "5-Remove lecturer."<<endl;
     cout <<  "6-Remove course."<<endl;
-
     cout << "7-See spesific student's information."<<endl;
     cout << "8-See spesific lecturer's information."<<endl;
-
-
     cout <<  "9-Get all database information."<<endl;
     cout <<  "10-See all Courses. "<<endl;
     cout <<  "11-Get all lecturers. "<<endl;
     cout <<  "12-Get all students."<<endl;
     cout <<  "13-Get all students score boards."<<endl;
-    cout <<  "14-Get all students course."<<endl;
-    cout <<  "15-Get all lectures course."<<endl;
-    cout << "16-Back.";
+    cout <<  "14-Get all lectures course."<<endl;
 
     cout <<  "------------------------------Admin Menu Page------------------------------" << endl;
 
@@ -392,9 +405,6 @@ void Admin::adminMenu(){
         void getAllStudentScoreBoards();
         break;
         case 14:
-        void getAllStudentsCourse();
-        break;
-        case 15:
         void getAllLecturerCourse();
         break;
         default :
@@ -402,3 +412,5 @@ void Admin::adminMenu(){
     }
 
 }
+
+#endif

@@ -5,43 +5,34 @@
 
 using namespace std;
 
-#include <string>
-#include <iostream>
-using namespace std;
-
-
-class User {
-protected:
+class User
+{
+    protected:
     string userName;
     string password;
-    
-public:
-    
-    User(){
-        
-        userName = "";
-        password = "";
+
+
+    public:
+    string getUserName()
+    {
+        return userName;
     }
+    void setUserName(string usern)
+    {
+        userName = usern;
     
-    User(User&);
-    ~User();
-   
-    string getUsername(){
-        return this->userName;
-    }
-    void setUsername(string userName){
-        this -> userName = userName;
     }
 
-    string getPassword(){
-        return this->password;
+    string getPassword()
+    {
+        return password;
     }
-    void setPassword(string password){
-        this -> password = password;
+    void setPassword(string passw)
+    {
+        password = passw;
     }
-    
+
+
 };
-
-
-
 #endif
+

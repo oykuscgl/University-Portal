@@ -1,39 +1,17 @@
+
 #include <iostream>
 #include <string>
 #include <climits>
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
+#include "User.h"
 #include "Lecturer.h"
 #include "Student.h"
 #include "TeachingAssistant.h"
 #include "Admin.h"
+#include "Login.h"
 using namespace std;
-
-
-
-void logIn()
-{
-    /* PSEUDOCODE
-    if password ture
-    {
-        check the username
-        if username true
-        {
-            check which user
-            open the user page
-        }
-        else{
-            invalid username. try again
-        }
-    }
-    else
-    {
-        invalid password.try again
-    }
-    */
-}
-
 
 
 int main()
@@ -41,6 +19,8 @@ int main()
     
     Student student;
     // Set values using setters
+    student.setUserName("oykusucuoglu");
+    student.setPassword("sucuoglu");
     student.setName("Öykü");
     student.setMyFaculty("Engineering");
     student.setEmail("oyku.sucuoglu@stu.khas.edu.tr");
@@ -59,9 +39,11 @@ int main()
     student.setGender('F');
 
     const string studentFile = "students.csv";
-    //student.saveToFile(studentFile);
+    student.saveToFile(studentFile);
 
     Student student1;
+    student1.setUserName("kayraakbas");
+    student1.setPassword("akbas");
     student1.setName("Kayra");
     student1.setMyFaculty("Engineering");
     student1.setEmail("kayra.akbas@stu.khas.edu.tr");
@@ -79,9 +61,11 @@ int main()
     student1.setStudentID(20201701053);
     student1.setGender('M');
 
-    //student1.saveToFile(studentFile);
+    student1.saveToFile(studentFile);
 
     Student student2;
+    student2.setUserName("leylaakbas");
+    student2.setPassword("akbas");
     student2.setName("Leyla");
     student2.setMyFaculty("Engineering");
     student2.setEmail("leyla.can@stu.khas.edu.tr");
@@ -92,7 +76,7 @@ int main()
     student2.setMyCourse(3,"");
     student2.setMyCourse(4, "");
     student2.setMyCourse(5, "");
-    student2.setAddress("Kadiköy");
+    student2.setAddress("Kadikoy");
     student2.setGPA(3.1);
     student2.setBirthYear(2001);
     student2.setNumOfCourses(6);
@@ -100,8 +84,9 @@ int main()
     student2.setStudentID(20191601046);
     student2.setGender('F');    
 
-    //student2.saveToFile(studentFile);
+    student2.saveToFile(studentFile);
 
+// Adding admins
     Admin admin;
     Admin admin1;
 
@@ -109,9 +94,8 @@ int main()
 
 
 
-    Lecturer lecturer;
-    lecturer.setName("dan");
-    
+// Adding lecturers
+    Lecturer lecturer;  
     Lecturer lecturer1;
     Lecturer lecturer2;
     Lecturer lecturer3;
@@ -120,31 +104,14 @@ int main()
 
 
 
-// They will also be students.
+// Adding teaching assistants
     TeachingAssistant ta;
     TeachingAssistant ta1;
 
-    const string teachAstFile = "teacAst.csv";
+    const string teachAstFile = "teachAst.csv";
 
+    login();
 
-/*
-    student will enter with student ID
-    lecturer will enter with a user name like oykscgl
-    admin will enter with a user name
-    teachAsst will enter with a user name
-*/
-    string user;
-    string password;
-    cout <<  "------------------------------School Login Page------------------------------" << endl;
-    cout << "User:  ";
-    cin >> user;
-    cout << "Password: " << endl;
-    cin >> password;
-    system("clear");
 
 
 }
-
-
-
-
