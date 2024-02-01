@@ -31,15 +31,13 @@ Teaching Assistants can:
 
 
 Admin can:
-1) Add new student
-2) Add new lecturer
-3) Remove student
-4) Remove lecturer
-5) Remove course
-6) See student info
-7) See lecturer info
-8) Get all database
-9) See all courses
-10) See all lecturers
-11) See all students
+1) Add/Remove student
+2) Add/Remove lecturer
+3) Remove course
+4) See student info
+5) See lecturer info
+6) Get all database
+7) See all courses
+8) See all lecturers
+9) See all students
 
