@@ -1,0 +1,45 @@
+{
+  "general_rules": {
+    "language": "English",
+    "clarity": true
+  },
+  "font": {
+    "default": "Times New Roman",
+    "headings": 14,
+    "text": 12,
+    "tables_figures": 10,
+    "footnotes": 10
+  },
+  "spacing": {
+    "line_spacing": 1.5,
+    "paragraph_indentation": 1.0,
+    "paragraph_spacing": 0
+  },
+  "margins": {
+    "left": 3.0,
+    "right": 2.0,
+    "top": 3.0,
+    "bottom": 2.0
+  },
+  "page_numbering": {
+    "start_page": 2,
+    "position": "top-right"
+  },
+  "headings": {
+    "section": {"font_size": 14, "alignment": "center", "uppercase": true},
+    "subheading": {"font_size": 12, "bold": true, "capitalize": true},
+    "sub_subheading": {"font_size": 12, "capitalize": true}
+  },
+  "referencing": {
+    "format": "APA",
+    "in_text_format": "[1]"
+  },
+  "equations": {
+    "numbering": "right"
+  },
+  "figures": {
+    "table_caption": "above",
+    "figure_caption": "below",
+    "alignment": "center"
+  }
+}

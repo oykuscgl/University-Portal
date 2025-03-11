@@ -1,0 +1,3 @@
+Font hatası: 'The' yanlış font kullanıyor.
+Font hatası: ' (font)' yanlış font kullanıyor.
+Font hatası: ' ' yanlış font kullanıyor.
